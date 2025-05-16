@@ -1,7 +1,5 @@
-
 import json
 import boto3
-import os
 from datetime import timedelta
 from momento import CacheClient, Configurations, CredentialProvider
 from momento.responses import CacheGet
@@ -27,14 +25,11 @@ def lambda_handler(event, context):
         "region": region
     }
 
-    secret = secretsmanager_client.get_secret_value(SecretId="momento/cache_api_key")
-    momento_api_key = json.loads(secret['SecretString'])['key']
-    
-    momento_client = create_client(momento_api_key)
+    momento_api_key = get_momento_key()
+    momento_client = create_momento_client(momento_api_key)
 
     try:
         result = momento_client.set(CACHE_NAME, key, json.dumps(value))
-        print(f"Stored event record for {instance_id}")
 
         update_active_index(momento_client, instance_id, state)
 
@@ -46,14 +41,20 @@ def lambda_handler(event, context):
         'body': json.dumps('Hello from Lambda!')
     }
 
-def create_client(momento_api_key):
-  momento_api_key = momento_api_key
-  config = {
+def get_momento_key():
+    secret = secretsmanager_client.get_secret_value(SecretId="momento/cache_api_key")
+    return json.loads(secret['SecretString'])['key']
+
+def create_momento_client(momento_api_key):
+    momento_api_key = momento_api_key
+
+    config = {
     'configuration': Configurations.Laptop.v1(),
     'credential_provider': CredentialProvider.from_string(momento_api_key),
     'default_ttl': timedelta(seconds=86400)
-  }
-  return CacheClient.create(**config)
+    }
+
+    return CacheClient.create(**config)
 
 def update_active_index(momento_client, instance_id, state):
     try:
