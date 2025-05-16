@@ -79,13 +79,15 @@ def get_momento_key():
     return json.loads(secret['SecretString'])['key']
 
 def create_momento_client(momento_api_key):
-  momento_api_key = momento_api_key
-  config = {
+    momento_api_key = momento_api_key
+
+    config = {
     'configuration': Configurations.Laptop.v1(),
     'credential_provider': CredentialProvider.from_string(momento_api_key),
     'default_ttl': timedelta(seconds=86400) # one day
-  }
-  return CacheClient.create(**config)
+    }
+    
+    return CacheClient.create(**config)
 
 def get_metric_stats(instance_id, metric_name, start_time, period):
     end_time = datetime.now(timezone.utc)
