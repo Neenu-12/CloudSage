@@ -13,7 +13,7 @@ export const mockRecommendation: RecommendationData = {
     aws_service_type: "EC2",
     region: "ap-south-1",
     start_time: "2025-05-15T11:16:12+00:00",
-    now: "2025-05-15T11:34:15.255008+00:00",
+    synced_on: "2025-05-15T11:34:15.255008+00:00",
     uptime: "0:18:03.255008",
     instance_id: "i-09c091b52c1e61a97",
   },

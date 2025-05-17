@@ -42,9 +42,11 @@ const Dashboard: React.FC<DashboardProps> = () => {
         </div>
 
         <div className="grid grid-cols-1 gap-6">
-          {recommendations.map((recommendation, index) => (
-            <RecommendationCard key={index} data={recommendation} />
-          ))}
+          {recommendations.map(
+            (recommendation: RecommendationData, index: number) => (
+              <RecommendationCard key={index} data={recommendation} />
+            )
+          )}
         </div>
       </main>
     </div>
