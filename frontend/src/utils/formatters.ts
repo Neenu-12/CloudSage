@@ -25,7 +25,6 @@ export const formatPercentage = (value: number): string => {
  * Format date strings to a more readable format
  */
 export const formatDate = (dateString: string): string => {
-  console.log(dateString);
   const date = new Date(dateString);
   return new Intl.DateTimeFormat("en-US", {
     year: "numeric",

@@ -12,7 +12,6 @@ export const ShimmerCard: React.FC = () => (
           <div className="flex items-center gap-2 flex-wrap">
             <Shimmer className="h-5 w-16" />
             <Shimmer className="h-5 w-12" />
-            <Shimmer className="h-5 w-32" />
           </div>
           <Shimmer className="mt-2 h-6 w-3/4" />
         </div>
@@ -58,11 +57,6 @@ export const ShimmerCard: React.FC = () => (
 
       <div className="mt-4">
         <Shimmer className="h-10 w-full mb-2" />
-        <div className="space-y-2">
-          {[1, 2, 3].map((i) => (
-            <Shimmer key={i} className="h-4 w-full" />
-          ))}
-        </div>
       </div>
     </div>
   </div>
@@ -77,32 +71,15 @@ export const ShimmerDashboard: React.FC = () => (
             <Shimmer className="h-8 w-48 mb-2" />
             <Shimmer className="h-4 w-64" />
           </div>
-          <Shimmer className="h-8 w-8 rounded-full" />
         </div>
       </div>
     </header>
 
     <main className="container mx-auto px-6 py-8">
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {[1, 2].map((i) => (
-            <div key={i}>
-              <Shimmer className="h-6 w-40 mb-2" />
-              <Shimmer className="h-10 w-32 mb-1" />
-              <Shimmer className="h-4 w-48" />
-            </div>
-          ))}
-        </div>
-      </div>
-
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
           <Shimmer className="h-7 w-48 mb-2" />
           <Shimmer className="h-5 w-96" />
-        </div>
-        <div className="flex gap-4">
-          <Shimmer className="h-9 w-32" />
-          <Shimmer className="h-9 w-32" />
         </div>
       </div>
 

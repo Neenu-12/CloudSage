@@ -12,6 +12,9 @@ export interface Recommendation {
   synced_on: string;
   uptime: string;
   instance_id: string;
+  current_instance_summary: string[];
+  suggested_instance_summary: string[];
+  current_instance_type: string;
 }
 
 export interface RecommendationData {

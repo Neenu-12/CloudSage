@@ -16,6 +16,19 @@ export const mockRecommendation: RecommendationData = {
     synced_on: "2025-05-15T11:34:15.255008+00:00",
     uptime: "0:18:03.255008",
     instance_id: "i-09c091b52c1e61a97",
+    current_instance_summary: [
+      "vCPUs: 1",
+      "RAM: 1 GiB",
+      "Est. Cost/Day: $0.0120",
+      "Est. Power/Day: 6.2 Wh",
+    ],
+    suggested_instance_summary: [
+      "vCPUs: 1",
+      "RAM: 1 GiB",
+      "Est. Cost/Day: $0.0120",
+      "Est. Power/Day: 6.2 Wh",
+    ],
+    current_instance_type: "t2.micro",
   },
   "instance-id": "i-09c091b52c1e61a97",
   reasoning: [
