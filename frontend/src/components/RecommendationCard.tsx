@@ -10,7 +10,7 @@ interface RecommendationCardProps {
 }
 
 const RecommendationCard: React.FC<RecommendationCardProps> = ({ data }) => {
-  const { recommendation, reasoning } = data;
+  const { recommendation } = data;
 
   const getActionBadgeColor = (action: string) => {
     switch (action.toLowerCase()) {
@@ -101,7 +101,7 @@ const RecommendationCard: React.FC<RecommendationCardProps> = ({ data }) => {
           Last updated: {formatDate(recommendation.synced_on)}
         </div>
 
-        <ReasoningSection reasoning={reasoning} />
+        <ReasoningSection recommendationData={data} />
       </div>
     </div>
   );

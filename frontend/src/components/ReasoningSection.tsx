@@ -8,13 +8,25 @@ import {
   CardHeader,
   CardTitle,
 } from "./Cards";
+import { RecommendationData } from "@/types";
 
 interface ReasoningSectionProps {
-  reasoning: string[];
+  recommendationData: RecommendationData;
 }
 
-const ReasoningSection: React.FC<ReasoningSectionProps> = ({ reasoning }) => {
+const ReasoningSection: React.FC<ReasoningSectionProps> = ({
+  recommendationData,
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const {
+    reasoning,
+    recommendation: {
+      suggested_instance_type: suggestedInstanceType,
+      current_instance_type: currentInstanceType,
+      suggested_instance_summary: suggestedInstanceSummary,
+      current_instance_summary: currentInstanceSummary,
+    },
+  } = recommendationData;
 
   return (
     <div className="mt-4 bg-gray-50 rounded-lg border border-gray-200 overflow-hidden transition-all duration-300">
@@ -31,7 +43,7 @@ const ReasoningSection: React.FC<ReasoningSectionProps> = ({ reasoning }) => {
           isExpanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <ul className="p-4 space-y-2">
+        <ul className="p-4 space-y-2 list-disc px-8">
           {reasoning.map((reason, index) => (
             <li key={index} className="text-gray-700 text-sm">
               {reason}
@@ -52,27 +64,27 @@ const ReasoningSection: React.FC<ReasoningSectionProps> = ({ reasoning }) => {
                 <div className="border border-gray-200 rounded-lg p-4">
                   <div className="flex items-center gap-2 mb-3">
                     <Server className="h-5 w-5 text-blue-500" />
-                    <h3 className="font-medium">Current: t2.micro</h3>
+                    <h3 className="font-medium">
+                      Current: {currentInstanceType}
+                    </h3>
                   </div>
-                  <ul className="space-y-2 text-sm text-muted-foreground text-gray-500">
-                    <li>• 1 vCPU (Xen)</li>
-                    <li>• 1 GiB RAM</li>
-                    <li>• $0.0115/hour ($0.276/day)</li>
-                    <li>• ~4.5W power consumption</li>
-                    <li>• 0.1080 kWh/day</li>
+                  <ul className="space-y-2 text-sm text-gray-500 list-disc px-5">
+                    {currentInstanceSummary.map((suggestion, index) => (
+                      <li key={suggestion + index}>{suggestion}</li>
+                    ))}
                   </ul>
                 </div>
                 <div className="border rounded-lg p-4 border-green-200 bg-green-50">
                   <div className="flex items-center gap-2 mb-3">
                     <Server className="h-5 w-5 text-green-500" />
-                    <h3 className="font-medium">Recommended: t3.nano</h3>
+                    <h3 className="font-medium">
+                      Recommended: {suggestedInstanceType}
+                    </h3>
                   </div>
-                  <ul className="space-y-2 text-sm text-muted-foreground text-gray-500">
-                    <li>• 2 vCPU (Nitro)</li>
-                    <li>• 0.5 GiB RAM</li>
-                    <li>• $0.0057/hour ($0.1368/day)</li>
-                    <li>• ~3.75W power consumption</li>
-                    <li>• 0.0900 kWh/day</li>
+                  <ul className="space-y-2 text-sm text-gray-500 list-disc px-5">
+                    {suggestedInstanceSummary.map((suggestion, index) => (
+                      <li key={suggestion + index}>{suggestion}</li>
+                    ))}
                   </ul>
                 </div>
               </div>
